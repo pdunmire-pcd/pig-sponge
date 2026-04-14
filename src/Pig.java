@@ -24,18 +24,56 @@ public class Pig {
         assertEqual(5, pigLatin("e"), "e");
     }
 
+    //sentenceSplitter (piglatin)
+    //first method split the sentence into words 
+    //String[] words = sentence.split(" ");
+    // for loop to split each word
+    //for (String word : sentence){
+            //result += pigLatinSingleWord(word)
+            //result += " ",}
+            //results = result.substring(0, result.length() -1 );
+            //return results;
+    //}
+    //store each word separated by the .split() into a variable called word
+
+    //Second Method is pigLatinSingleWord private (String word)
+     // have a if statementcharAt(0) === "a" || word.charAt(0) == "e" || word.charAt(0) == "i" ||
+    // takes the word and adds charAt(0) to that word
+    // have a if statement
+    // reads index 0
+    // if the character starts with a vowel then it will return the input back no changes
+    // else it will take the index zero 
+    // takes the word and adds charAt(0) to that word
+    // adds index 0 to end of word
+    // and than takes that word and adds "ay"
+    // return the piglatin sentence.
     // Implement your solution here!
+    // Method 1: splits sentence into words, converts each, rejoins with spaces
     public static String pigLatin(String sentence) {
-        return null;
+        String[] words = sentence.split(" ");
+        String result = "";
+
+        for (String word : words) {          // iterate over the array, not sentence
+            result += pigLatinSingleWord(word) + " ";
+        }
+
+        return result.substring(0, result.length() - 1);  // trim trailing space
     }
 
+    // Method 2: converts a single word to pig Latin
+    private static String pigLatinSingleWord(String word) {
+        char firstLetter = word.charAt(0);
 
+        // If starts with a vowel, return unchanged
+        if (firstLetter == 'a' || firstLetter == 'e' || firstLetter == 'i' ||
+            firstLetter == 'o' || firstLetter == 'u') {
+            return word;
+        }
 
-
-
-
-
-
+        // Move first letter to end and add "ay"
+        return word.substring(1) + firstLetter + "ay";
+    }
+    
 
     // Method to help with testing, you do not need to read this.
     public static void assertEqual(int testNumber, String actual, String expected) {
